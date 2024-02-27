@@ -12,7 +12,7 @@ export default function SignUp({setShowLayout}) {
       }, []);
 
   return (
-    <div className='flex flex-row items-center justify-center'>
+    <div className='flex flex-row items-center justify-center sm:justify-normal'>
       <div className='w-1/2 hidden h-[100vh] bg-[#f3f5f7] sm:flex flex-row justify-center relative'>
         <img src={login_banner} alt="login banner" className='object-contain h-full'/>
         <span className='absolute top-6 left-0 right-0 font-medium text-2xl text-center'>3legant.</span>
