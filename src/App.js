@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import NewsLetter from './Components/NewsLetter';
+import Home from './Components/Home';
+import Blog from './Components/Blog';
+import { useState } from 'react';
+import DetailProduct from './Components/DetailProduct';
+import SignUp from './Components/SignUp';
+import SignIn from './Components/SignIn';
 
 function App() {
+
+  const [notifi, setNotifi] = useState(true);
+  const [showLayout, setShowLayout] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        {showLayout && <Header notifi={notifi} setNotifi={setNotifi}/>}
+        <Routes>
+          <Route path='/' element={<Home notifi={notifi} setNotifi={setNotifi}/>}/>
+          <Route path='/blog' element={<Blog notifi={notifi} setNotifi={setNotifi}/>}/>
+          <Route path='/products/:id' element={<DetailProduct notifi={notifi} setNotifi={setNotifi}/>} />
+          <Route path="/signup" element={<SignUp setShowLayout={setShowLayout} />} />
+          <Route path="/signin" element={<SignIn setShowLayout={setShowLayout} />} />
+        </Routes>
+        {showLayout && <NewsLetter/>}
+        {showLayout && <Footer/>}
+      </BrowserRouter>
+      
+    </>
+    
   );
 }
 
